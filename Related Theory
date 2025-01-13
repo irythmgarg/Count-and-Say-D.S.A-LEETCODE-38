@@ -1,0 +1,52 @@
+// THEORY:
+// The "Count and Say" sequence is a series of strings where each term is generated based on the previous term.
+// - The first term (n=1) is "1".
+// - For each subsequent term, you "read" the previous term by counting contiguous blocks of characters
+//   and describing them in the format: "<count><character>".
+// Example:
+// - n=1: "1"
+// - n=2: "11" (read as "one 1")
+// - n=3: "21" (read as "two 1s")
+// - n=4: "1211" (read as "one 2, one 1")
+// - n=5: "111221" (read as "one 1, one 2, two 1s")
+
+// PROBLEM STATEMENT:
+// Given an integer `n`, return the `n`th term in the "Count and Say" sequence as a string.
+
+// SOLUTION:
+// - The problem is solved recursively:
+//   1. Base Case: If `n == 1`, return "1".
+//   2. Recursive Step: Generate the `n`th term by processing the `(n-1)`th term.
+// - To process the previous term:
+//   - Iterate through the string character by character, counting contiguous blocks of the same character.
+//   - Append the count followed by the character to the result string `ans`.
+//   - At the end of traversal, append the count and character of the last block.
+
+// TIME COMPLEXITY:
+// O(2^n) - The sequence grows exponentially, and processing the previous term requires iterating over it.
+// For each term, you traverse the string of length proportional to the (n-1)th term. This results in an exponential growth rate.
+
+// SPACE COMPLEXITY:
+// O(n) - The depth of the recursion stack is proportional to `n`.
+
+// EXAMPLES:
+// Example 1:
+// Input: n = 1
+// Process: Return "1" as it is the base case.
+// Output: "1"
+
+// Example 2:
+// Input: n = 4
+// Process:
+// - n=1: "1"
+// - n=2: "11" (read as "one 1")
+// - n=3: "21" (read as "two 1s")
+// - n=4: "1211" (read as "one 2, one 1")
+// Output: "1211"
+
+// Example 3:
+// Input: n = 5
+// Process:
+// - n=4: "1211"
+// - n=5: "111221" (read as "one 1, one 2, two 1s")
+// Output: "111221"
