@@ -1,0 +1,38 @@
+class Solution {
+public:
+    string countAndSay(int n) {
+        // Base Case: The first term of the sequence is "1"
+        if (n == 1) {
+            return "1";
+        }
+
+        // Recursive Step: Get the (n-1)th term
+        string get = countAndSay(n - 1);
+
+        // Variables to build the nth term
+        string ans = "";         // Stores the result for the current term
+        char start = get[0];     // Tracks the current character being processed
+        int count = 1;           // Tracks the count of contiguous occurrences of `start`
+
+        // Iterate through the (n-1)th term
+        for (int i = 1; i < get.length(); i++) {
+            if (get[i] == start) {
+                // If the character matches `start`, increment the count
+                count++;
+            } else {
+                // If a different character is encountered, append the count and character to `ans`
+                ans += to_string(count);
+                ans += start;
+                // Update `start` and reset the count
+                start = get[i];
+                count = 1;
+            }
+        }
+
+        // Append the count and character of the last block
+        ans += to_string(count);
+        ans += start;
+
+        return ans;
+    }
+};
